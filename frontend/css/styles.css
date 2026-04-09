@@ -1,0 +1,73 @@
+/* Reset básico */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+} */
+
+/* Fondo general */
+body {
+  background-color: #f3f3f3;
+}
+
+/* NAV (parte superior) */
+.titulo {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.titulo h1 {
+  color: #5a3e2b;
+  margin-bottom: 10px;
+}
+
+/* Imagen */
+.titulo img {
+  border-radius: 50%;
+  margin: 10px 0;
+}
+
+/* Lista horizontal */
+.titulo ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Links */
+.titulo ul li a {
+  text-decoration: none;
+  color: white;
+  background: #8b5e3c;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+/* Hover */
+.titulo ul li a:hover {
+  background: #a9744f;
+  transform: scale(1.1);
+}
+
+/* MAIN contenido */
+/* main {
+  padding: 30px;
+  text-align: center;
+} */
+
+/* parte de SECTION */
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}

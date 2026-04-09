@@ -4,18 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aroma</title>
-    <link rel="stylesheet" href="frontend/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
+  <body>
+    <h1>Aroma</h1>
     <nav class="titulo">
-      <h1>Aroma</h1>
-      <img src="img/imagen1.png" alt="" />
+      <img src="img/imagen1.png" alt="" width="200" />
       <ul>
-        <li><a href="#">inicio</a></li>
-        <li><a href="#">menu</a></li>
-        <li><a href="#">carrito 0</a></li>
-        <li><a href="#">contacto</a></li>
+        <li><a href="#" class="nav-link" data-view="home">inicio</a></li>
+        <li><a href="#" class="nav-link" data-view="menu">menu</a></li>
+        <!-- <li><a href="#" class="nav-link" data-view="">carrito 0</a></li> -->
+        <li><a href="#" class="nav-link" data-view="contact">contacto</a></li>
       </ul>
     </nav>
-  </head>
-  <body></body>
+
+    <!-- <nav>
+      <button onclick="mostrarvista('home')">inicio</button>
+      <button onclick="mostrarvista('menu')">menu</button>
+      <button onclick="mostrarvista('contact')">contacto</button>
+    </nav> -->
+
+    <main>
+      <section id="view-home" class="view active">
+        <h2>inicio</h2>
+        <p>bienvenido a la cafeteria</p>
+      </section>
+
+      <section id="view-menu" class="view">
+        <h2>menu</h2>
+        <p>aqui van los productos</p>
+      </section>
+
+      <section id="view-contact" class="view">
+        <h2>contacto</h2>
+        <p>aqui va la informacion de contacto</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>derechos reservados. 2026. desarollado por elmer</p>
+    </footer>
+    <script src="js/app.js"></script>
+  </body>
 </html>
