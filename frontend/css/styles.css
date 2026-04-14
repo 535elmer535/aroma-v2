@@ -71,3 +71,28 @@ body {
 .view.active {
   display: block;
 }
+
+.products-container {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: rgb(230, 216, 200);
+}
+
+.product-price {
+  font: inherit;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.product-price:hover {
+  opacity: 0.9;
+  background: rgb(241, 195, 202);
+  color: rgb(25, 74, 165);
+}
