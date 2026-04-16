@@ -21,25 +21,6 @@ enlaces.forEach(function (enlace) {
   });
 });
 
-// const persona = [
-// {
-
-//   id:1,
-//   nombre:"carlos",
-//   apellido:"gusman",
-//   edad:21,
-// },
-
-// {
-
-//   id:2,
-//   nombre:"mariel",
-//   apellido:"gusman",
-//   edad:35,
-// },
-
-// ];
-
 const productos = [
   {
     id: 1,
@@ -71,20 +52,17 @@ const productos = [
 
   {
     id: 5,
-    nombre: "te",
-    descripcion: "lite sabor fresa",
-    precio: 15,
+    nombre: "te verde",
+    descripcion: "natural",
+    precio: 10,
   },
   {
     id: 6,
     nombre: "helado",
     descripcion: "lite sabor fresa",
-    precio: 15,
+    precio: 16,
   },
 ];
-
-// console.log(productos[2].nombre);
-// console.log(productos[2].precio);
 
 function renderizarproductos() {
   const contenedor = document.getElementById("products-container");
@@ -94,10 +72,26 @@ function renderizarproductos() {
   productos.forEach(function (producto) {
     contenedor.innerHTML += `<div class="product-card">
 <h3>${producto.nombre}</h3>
-<p>${producto.descripcion}</p>
-<span class="product-price">${producto.precio}</span>
+
+<p class="product-description">${producto.descripcion}</p>
+<span class="product-price">Bs. ${producto.precio}</span>
+<br>
+
+<button class="btn-add" data-id="${producto.id}">agregar al carrito</button>
+
 </div>`;
   });
 }
+
+// funcionamineto botones
+
+const botones = document.querySelectorAll(".btn-add");
+
+botones.forEach(function (boton) {
+  boton.addEventListener("click", function () {
+    const id = this.dataset.id;
+    console.log("producto agregado:", id);
+  });
+});
 
 renderizarproductos();
