@@ -253,3 +253,34 @@ footer p {
   color: black;
   transform: translateY(-2px);
 }
+
+/* CARRITO */
+#cart-container {
+  margin-top: 20px;
+}
+
+.cart-item {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.cart-item span {
+  font-weight: bold;
+}
+
+/* opcion1 */
+
+.total-carrito {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #dddbd9;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 22px;
+}

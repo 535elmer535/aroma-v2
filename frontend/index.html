@@ -3,56 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aroma</title>
+    <title>Document</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-
   <body>
+    <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar">
       <div class="nav-brand">
         <img src="img/imagen1.png" alt="logo aroma" class="brand-icon" />
         <span class="brand-name">Aroma</span>
       </div>
-      <ul class="nav-links" id="navlinks">
-        <li><a href="#" class="nav-link" data-view="home">inicio</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="nav-link" data-view="home">Inicio</a></li>
         <li>
-          <a href="#" class="nav-link" data-view="menu"
-            >menu (<span id="cart-count">0</span>)</a
-          >
+          <a href="#" class="nav-link" data-view="menu">Menú </a>
         </li>
-        <!-- <li><a href="#" class="nav-link" data-view="">carrito 0</a></li> -->
-        <li><a href="#" class="nav-link" data-view="contact">contacto</a></li>
+        <li>
+          <a href="#" class="nav-link" data-view="cart">
+            Carrito (<span id="cart-count">0</span>)
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link" data-view="contact">Contacto</a>
+        </li>
       </ul>
     </nav>
 
-    <!-- <nav>
-      <button onclick="mostrarvista('home')">inicio</button>
-      <button onclick="mostrarvista('menu')">menu</button>
-      <button onclick="mostrarvista('contact')">contacto</button>
-    </nav> -->
-
     <main>
       <section id="view-home" class="view active">
-        <h2>inicio</h2>
-        <p>bienvenido a la cafeteria</p>
+        <h2>Inicio</h2>
+        <p>Bienvenido a la cafeteria</p>
       </section>
 
       <section id="view-menu" class="view">
-        <h2>menu</h2>
-        <p>nuestros productos disponibles</p>
-
+        <h2>Menu</h2>
+        <p>Nuestros productos disponibles</p>
         <div id="products-container" class="products-container"></div>
       </section>
 
+      <!-- CARRITO -->
+      <section id="view-cart" class="view">
+        <h2>Carrito</h2>
+        <p>Productos agregados</p>
+
+        <div id="cart-container"></div>
+      </section>
+
+      <!-- CONTACTO -->
       <section id="view-contact" class="view">
-        <h2>contacto</h2>
-        <p>aqui va la informacion de contacto</p>
+        <h2>Contacto</h2>
+        <p>Información de contacto</p>
       </section>
     </main>
 
     <footer>
-      <p>derechos reservados. 2026. desarollado por elmer</p>
+      <p>Derechos reservados 2026. Desarrollado por Sergio Alcocer</p>
     </footer>
     <script src="js/app.js"></script>
   </body>
 </html>
+
+<table></table>
