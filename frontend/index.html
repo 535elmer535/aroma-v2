@@ -130,8 +130,38 @@
       <section id="view-contact" class="view">
         <div class="section-header">
           <h2>Contacto</h2>
-          <p>Estamos para ayudarte</p>
+          <p>estamos para ayudarte</p>
         </div>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-group">
+            <label for="contact-name"> nombre completo</label>
+            <input type="text" id="contact-name" placeholder="ej. juan perez" />
+            <small class="error-msg" id="error-name"></small>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">correo electronico</label>
+
+            <input
+              type="email"
+              id="contact-email"
+              placeholder="ej.juan@email.com"
+            />
+            <small class="error-msg" id="error-email"></small>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">mensaje</label>
+            <textarea
+              name=""
+              id="contact-message"
+              rows="4"
+              placeholder="en que podemos ayudarte?"
+            ></textarea>
+            <small class="error-msg" id="error-message"></small>
+          </div>
+          <button type="submit" class="btn btn--primary">enviar mensaje</button>
+          <p id="form-success" class="success-msg"></p>
+        </form>
 
         <div class="contact-grid">
           <div class="contact-card">
@@ -155,9 +185,7 @@
 
     <!-- ===================== FOOTER ===================== -->
     <footer class="footer">
-      <p>
-        © 2026 Aroma Café — Desarrollado por <strong>Sergio Alcocer</strong>
-      </p>
+      <p>© 2026 Aroma Café — Desarrollado por <strong>elmer</strong></p>
     </footer>
 
     <script src="js/app.js"></script>

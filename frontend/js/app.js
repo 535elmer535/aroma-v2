@@ -338,6 +338,48 @@ function renderizarCarrito() {
   }
 }
 
+function inicializarformulariocontacto() {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById("contact-name");
+    const email = document.getElementById("contact-email");
+    const mensaje = document.getElementById("contact-message");
+
+    const errornombre = document.getElementById("error-name");
+    const erroremail = document.getElementById("error-email");
+    const errormensaje = document.getElementById("error-message");
+
+    const exito = document.getElementById("form-success");
+
+    errornombre.textContent = "";
+    erroremail.textContent = "";
+    errormensaje.textContent = "";
+    exito.textContent = "";
+
+    let valido = true;
+    if (nombre.value.trim() === "") {
+      errornombre.textContent = "el nombre es obligatorio";
+      valido = false;
+    }
+
+    if (email.value.trim() === "") {
+      erroremail.textContent = "el correo es obligatorio";
+      valido = false;
+    }
+
+    if (mensaje.value.trim() === "") {
+      errormensaje.textContent = "el mensaje es obligatorio";
+      valido = false;
+    }
+
+    exito.textContent = "mensaje enviado";
+  });
+}
+
 // ==========================
 // INICIALIZAR
 // ==========================
