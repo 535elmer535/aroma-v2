@@ -1,188 +1,1013 @@
-/* Reset básico */
-* {
+/* ============================================================
+   AROMA CAFÉ — Stylesheet
+   Secciones:
+   1.  Variables & Reset
+   2.  Base / Tipografía
+   3.  Navbar
+   4.  Vistas (SPA)
+   5.  Hero (Inicio)
+   6.  Features (Inicio)
+   7.  Section Header reutilizable
+   8.  Filtros de categoría (Menú)
+   9.  Productos — Cards con imagen
+   10. Carrito — Items con controles +/−
+   11. Contacto
+   12. Footer
+   13. Botones (sistema global)
+   14. Animaciones
+   15. Responsive (Mobile-first)
+============================================================ */
+
+/* ============================================================
+   1. VARIABLES & RESET
+   Paleta de 4 colores principales + neutros.
+   Cambiar aquí afecta todo el sitio de forma consistente.
+============================================================ */
+:root {
+  /* Paleta principal — tonos café cálidos */
+  --color-primary: #6f4e37; /* café oscuro — botones, acentos   */
+  --color-primary-dark: #4b2e1f; /* café muy oscuro — títulos        */
+  --color-primary-light: #c08b5c; /* café claro — degradados          */
+  --color-accent: #e8a87c; /* durazno — hover suave            */
+
+  /* Neutros */
+  --color-bg: #f8f4f0; /* fondo general          */
+  --color-surface: #ffffff; /* tarjetas y paneles     */
+  --color-border: rgba(111, 78, 55, 0.12); /* bordes sutiles         */
+
+  /* Texto */
+  --color-text: #3d2b1f; /* texto principal   */
+  --color-text-muted: #7a5c4a; /* texto secundario  */
+
+  /* Éxito / precio */
+  --color-success: #2e7d52;
+  --color-success-dark: #1b5e38;
+
+  /* Peligro / eliminar */
+  --color-danger: #c62828;
+
+  /* Espaciados */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+
+  /* Bordes redondeados */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(80, 50, 20, 0.08);
+  --shadow-md: 0 8px 24px rgba(80, 50, 20, 0.12);
+  --shadow-lg: 0 16px 40px rgba(80, 50, 20, 0.18);
+
+  /* Transición estándar */
+  --transition: 0.25s ease;
+}
+
+/* Reset moderno */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================
+   2. BASE / TIPOGRAFÍA
+   Inter para cuerpo de texto, Poppins para títulos.
+============================================================ */
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #f8f5f1, #efe7dd);
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--color-bg);
+  /* Textura sutil de fondo con gradientes radiales */
+  background-image:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(192, 139, 92, 0.09) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(111, 78, 55, 0.07) 0%,
+      transparent 50%
+    );
+  color: var(--color-text);
+  line-height: 1.6;
   min-height: 100vh;
 }
 
-/* NAVBAR */
+/* Poppins para todos los encabezados */
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+button {
+  font-family: inherit;
+}
+
+/* ============================================================
+   3. NAVBAR
+   Sticky, glassmorphism, responsive con menú hamburguesa.
+============================================================ */
 .navbar {
-  width: 90%;
+  position: sticky;
+  top: var(--space-md);
+  z-index: 200;
+
+  width: 92%;
   max-width: 1100px;
-  margin: 24px auto;
-  padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(120, 72, 32, 0.08);
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(80, 50, 20, 0.12);
+  margin: var(--space-md) auto 0;
+  padding: 10px var(--space-lg);
+
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* MARCA */
+/* Logo + nombre de marca */
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-sm);
 }
 
 .brand-icon {
-  width: 120px;
-  /* height: 120px; */
+  width: 42px;
+  height: 42px;
   object-fit: contain;
+  border-radius: var(--radius-sm);
 }
 
 .brand-name {
-  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #4b2e1f;
-  letter-spacing: 0.5px;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.4px;
 }
 
-/* LINKS */
+/* Lista de enlaces */
 .nav-links {
-  list-style: none;
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.nav-links li {
-  list-style: none;
+  gap: var(--space-xs);
 }
 
 .nav-link {
-  display: inline-block;
-  text-decoration: none;
-  color: #5c3a21;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: 999px;
-  transition: all 0.3s ease;
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
-/* Hover bonito */
 .nav-link:hover {
-  background: #6f4e37;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(111, 78, 55, 0.22);
-}
-
-/* Link activo opcional */
-.nav-link.active {
-  background: #3e2723;
+  background: var(--color-primary);
   color: #fff;
-  box-shadow: 0 8px 18px rgba(62, 39, 35, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(111, 78, 55, 0.28);
 }
 
-/* MAIN */
+/* Estado activo marcado por JS */
+.nav-link.active {
+  background: var(--color-primary-dark);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(75, 46, 31, 0.3);
+}
+
+/* Enlace del carrito */
+.nav-link--cart {
+  font-weight: 600;
+}
+
+/* Badge rojo con la cantidad de items */
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: #e53935;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+
+/* Botón hamburguesa — oculto en desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.nav-toggle:hover {
+  background: rgba(111, 78, 55, 0.08);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-primary-dark);
+  border-radius: 2px;
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+/* Animación X al abrir el menú */
+.nav-toggle--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle--open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   4. VISTAS (SPA)
+   Cada <section class="view"> se muestra/oculta con .active.
+============================================================ */
 main {
-  width: 90%;
+  width: 92%;
   max-width: 1100px;
-  margin: 10px auto 30px;
+  margin: var(--space-lg) auto var(--space-xl);
 }
 
-/* VISTAS DE LA SPA */
 .view {
   display: none;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border-radius: 24px;
-  padding: 40px 32px;
-  box-shadow: 0 12px 35px rgba(80, 50, 20, 0.12);
-  border: 1px solid rgba(120, 72, 32, 0.08);
-  min-height: 420px;
-  animation: fadeIn 0.35s ease;
+  /* Animación de entrada al cambiar de vista */
+  animation: fadeSlideUp 0.35s ease both;
 }
 
 .view.active {
   display: block;
 }
 
-/* TÍTULOS Y TEXTO */
-.view h2 {
-  font-size: 2rem;
-  color: #4b2e1f;
-  margin-bottom: 14px;
+/* ============================================================
+   5. HERO (INICIO)
+   Dos columnas: texto a la izquierda, imagen a la derecha.
+============================================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-xl);
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-xl);
+  overflow: hidden;
   position: relative;
 }
 
-.view h2::after {
+/* Círculo decorativo de fondo */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle,
+    rgba(192, 139, 92, 0.14),
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Etiqueta pequeña sobre el título */
+.hero__tag {
+  display: inline-block;
+  background: rgba(111, 78, 55, 0.1);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.5px;
+}
+
+.hero__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-md);
+  line-height: 1.15;
+}
+
+.hero__subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: var(--space-xl);
+}
+
+.hero__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__image img {
+  width: 100%;
+  max-width: 340px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hero__image img:hover {
+  transform: scale(1.03);
+}
+
+/* ============================================================
+   6. FEATURES (INICIO)
+   Tres tarjetas de propuesta de valor.
+============================================================ */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-card__icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.feature-card h3 {
+  font-size: 0.95rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.feature-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   7. SECTION HEADER (reutilizable)
+   Título con línea decorativa + subtítulo.
+============================================================ */
+.section-header {
+  margin-bottom: var(--space-xl);
+}
+
+.section-header h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-primary-dark);
+  display: inline-block;
+}
+
+/* Línea decorativa bajo el título */
+.section-header h2::after {
   content: "";
   display: block;
-  width: 70px;
+  width: 50px;
   height: 4px;
-  background: linear-gradient(90deg, #6f4e37, #c08b5c);
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-.view p {
-  font-size: 1.08rem;
-  color: #5f4635;
-  line-height: 1.7;
-  max-width: 700px;
-  margin-top: 18px;
-}
-
-/* ESTILO DIFERENTE PARA CADA SECCIÓN */
-#view-home {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.92)),
-    url("img/imagen1.png") center/cover no-repeat;
-}
-
-#view-menu {
   background: linear-gradient(
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.94)
+    90deg,
+    var(--color-primary),
+    var(--color-primary-light)
   );
+  border-radius: var(--radius-full);
+  margin-top: 8px;
 }
 
-#view-contact {
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.94)
-  );
+.section-header p {
+  font-size: 0.93rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
 }
 
-/* FOOTER */
-footer {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto 24px;
-  padding: 18px 24px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(120, 72, 32, 0.08);
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(80, 50, 20, 0.08);
+/* ============================================================
+   8. FILTROS DE CATEGORÍA (Menú)
+   Chips para filtrar por "todos", "bebidas", "postres".
+   (Preparado para uso futuro con JS)
+============================================================ */
+.filter-bar {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
 }
 
-footer p {
-  color: #6a4a35;
+.filter-chip {
+  padding: 6px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.filter-chip:hover,
+.filter-chip.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* ============================================================
+   9. PRODUCTOS — Cards con imagen real
+   Grid responsive. Cada card tiene:
+   - Imagen con overlay de categoría
+   - Cuerpo con nombre, descripción, precio y botón
+============================================================ */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Tarjeta individual */
+.product-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden; /* recorta la imagen en las esquinas */
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  /* Transición de elevación al hacer hover */
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.product-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(111, 78, 55, 0.22);
+}
+
+/* Contenedor de la imagen — altura fija para uniformidad */
+.product-card__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #f0e8e0; /* color de fondo mientras carga la imagen */
+}
+
+/* Imagen del producto con zoom suave al hover */
+.product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-card__img {
+  transform: scale(1.07);
+}
+
+/* Etiqueta de categoría sobre la imagen */
+.product-card__tag {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  background: rgba(75, 46, 31, 0.82);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  text-transform: capitalize;
+  letter-spacing: 0.4px;
+  backdrop-filter: blur(4px);
+}
+
+/* Cuerpo de la card (debajo de la imagen) */
+.product-card__body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1; /* ocupa el espacio restante para alinear el footer */
+}
+
+/* Nombre del producto */
+.product-card__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+/* Descripción corta */
+.product-card__desc {
+  font-size: 0.83rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  flex: 1; /* empuja precio+botón hacia abajo */
+}
+
+/* Fila inferior: precio a la izquierda, botón a la derecha */
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+/* Precio */
+.product-price {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-success);
+  white-space: nowrap;
+}
+
+/* Botón "Agregar al carrito" */
+.btn-add {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.btn-add:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(111, 78, 55, 0.32);
+}
+
+/* Feedback al hacer clic: escala hacia abajo */
+.btn-add:active {
+  transform: scale(0.96);
+}
+
+/* Estado "Agregado" — color verde temporal */
+.btn-add--added {
+  background: var(--color-success) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   10. CARRITO — Items con controles +/− y botón eliminar
+============================================================ */
+
+/* Contenedor principal del carrito */
+#cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ---- Item individual ---- */
+.cart-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.cart-item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(111, 78, 55, 0.2);
+}
+
+/* Miniatura cuadrada del producto */
+.cart-item__img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background: #f0e8e0;
+}
+
+/* Bloque de texto: nombre + precio unitario */
+.cart-item__info {
+  flex: 1;
+  min-width: 0; /* evita desbordamiento en flex */
+}
+
+.cart-item__name {
+  display: block;
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-item__unit {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  display: block;
+}
+
+/* ---- Controles de cantidad: − número + ---- */
+.cart-item__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+
+/* Botones − y + */
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.qty-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+/* Número de cantidad */
+.qty-value {
+  font-family: "Poppins", sans-serif;
   font-size: 0.95rem;
-  letter-spacing: 0.2px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  min-width: 22px;
+  text-align: center;
 }
 
-/* ANIMACIÓN SUAVE */
-@keyframes fadeIn {
+/* Subtotal del item */
+.cart-item__subtotal {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-success);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 70px;
+  text-align: right;
+}
+
+/* Botón eliminar (×) */
+.cart-item__remove {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: rgba(198, 40, 40, 0.08);
+  color: var(--color-danger);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.cart-item__remove:hover {
+  background: var(--color-danger);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.cart-item__remove:active {
+  transform: scale(0.95);
+}
+
+/* ---- Estado vacío del carrito ---- */
+.cart-empty {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  color: var(--color-text-muted);
+}
+
+.cart-empty__icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.cart-empty__title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.cart-empty__sub {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+/* ---- Resumen final: total + checkout ---- */
+.cart-summary {
+  margin-top: var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Fila total: etiqueta + monto */
+.cart-summary__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-summary__total span {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.cart-summary__total strong {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+}
+
+/* Botón de checkout */
+.btn-checkout {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--color-success), #3a9d68);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.btn-checkout:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-success-dark),
+    var(--color-success)
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(46, 125, 82, 0.38);
+}
+
+.btn-checkout:active {
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   11. CONTACTO
+============================================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.contact-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-card__icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.contact-card h3 {
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.contact-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   12. FOOTER
+============================================================ */
+.footer {
+  width: 92%;
+  max-width: 1100px;
+  margin: 0 auto var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.footer p {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+}
+
+.footer strong {
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   13. BOTONES — sistema global reutilizable
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 12px 28px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(111, 78, 55, 0.35);
+}
+
+.btn--primary:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   14. ANIMACIONES
+============================================================ */
+
+/* Entrada suave al cambiar de vista */
+@keyframes fadeSlideUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -190,97 +1015,156 @@ footer p {
   }
 }
 
-.products-container {
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.product-card {
-  background-color: #ffe8d3;
-  padding: 10px;
-  border-radius: 20px;
-  color: black;
-  text-align: center;
-  p {
-    color: black;
+/* Pulso del badge del carrito al agregar un producto */
+@keyframes badgeBump {
+  0% {
+    transform: scale(1);
   }
-  span {
-    color: red;
+  45% {
+    transform: scale(1.6);
+  }
+  100% {
+    transform: scale(1);
   }
 }
-/* aqui */
-/* .product-card:hover {
-  background-color: #d8cdc3;
-  color: white;
-  p {
-    color: white;
+
+.cart-badge.bump {
+  animation: badgeBump 0.35s ease;
+}
+
+/* ============================================================
+   15. RESPONSIVE — Mobile-first
+   Breakpoints: < 480px | < 768px | 768–1024px
+============================================================ */
+
+/* ---- Móvil (< 768px) ---- */
+@media (max-width: 768px) {
+  /* Mostrar botón hamburguesa */
+  .nav-toggle {
+    display: flex;
   }
-  span {
-    color: white;
+
+  /* Menú desplegable vertical */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-xs);
+    box-shadow: var(--shadow-lg);
+    z-index: 199;
+  }
+
+  /* Navbar necesita position relative para el menú absoluto */
+  .navbar {
+    position: relative;
+  }
+
+  /* Clase que activa el menú */
+  .nav-links--open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 12px var(--space-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.93rem;
+  }
+
+  /* Hero: una sola columna */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+  }
+
+  .hero__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero__image {
+    order: -1;
+  }
+  .hero__image img {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  /* Features: una columna */
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  /* Productos: dos columnas */
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  /* Imagen de la card más pequeña en móvil */
+  .product-card__img-wrap {
+    height: 140px;
+  }
+
+  /* Cart items: apilados verticalmente */
+  .cart-item {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .cart-item__info {
+    flex: 1 1 calc(100% - 80px);
+  }
+  .cart-item__controls {
+    order: 3;
+  }
+  .cart-item__subtotal {
+    order: 4;
+    margin-left: auto;
+  }
+  .cart-item__remove {
+    order: 2;
+  }
+
+  /* Resumen del carrito */
+  .cart-summary {
+    padding: var(--space-md);
+  }
+  .cart-summary__total strong {
+    font-size: 1.3rem;
   }
 }
-.product-description {
-  color: rgb(0, 0, 0);
+
+/* ---- Pantallas muy pequeñas (< 480px) ---- */
+@media (max-width: 480px) {
+  .products-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero__title {
+    font-size: 1.6rem;
+  }
+  .cart-summary__total strong {
+    font-size: 1.2rem;
+  }
 }
 
-.product-description:hover {
-  color: white;
-}
-
-.product-price {
-  color: brown;
-  font-weight: 700;
-} */
-/* aqui */
-
-.btn-add {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  background: #96c9af;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-add:hover {
-  background: #96c9af;
-  color: black;
-  transform: translateY(-2px);
-}
-
-/* CARRITO */
-#cart-container {
-  margin-top: 20px;
-}
-
-.cart-item {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.cart-item span {
-  font-weight: bold;
-}
-
-/* opcion1 */
-
-.total-carrito {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #dddbd9;
-  color: white;
-  text-align: center;
-  border-radius: 10px;
-  font-size: 22px;
+/* ---- Tablet (768px – 1024px) ---- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    gap: var(--space-lg);
+  }
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .products-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

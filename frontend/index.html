@@ -1,67 +1,195 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
+    <meta chrset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Aroma Café — Tienda</title>
+
+    <!-- Google Fonts: Poppins para títulos, Inter para cuerpo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <!-- BARRA DE NAVEGACIÓN -->
+    <!-- ===================== NAVBAR ===================== -->
     <nav class="navbar">
       <div class="nav-brand">
-        <img src="img/imagen1.png" alt="logo aroma" class="brand-icon" />
+        <img src="img/imagen1.png" alt="Logo Aroma Café" class="brand-icon" />
         <span class="brand-name">Aroma</span>
       </div>
+
+      <!-- Botón hamburguesa (solo visible en móvil) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="#" class="nav-link" data-view="home">Inicio</a></li>
+        <li><a href="#" class="nav-link" data-view="menu">Menú</a></li>
         <li>
-          <a href="#" class="nav-link" data-view="menu">Menú </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link" data-view="cart">
-            Carrito (<span id="cart-count">0</span>)
+          <!-- Enlace del carrito con badge de cantidad -->
+          <a href="#" class="nav-link nav-link--cart" data-view="cart">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              />
+            </svg>
+            Carrito
+            <!-- Badge: el JS lo actualiza mediante id="cart-count" -->
+            <span class="cart-badge" id="cart-count">0</span>
           </a>
         </li>
-
-        <li>
-          <a href="#" class="nav-link" data-view="contact">Contacto</a>
-        </li>
+        <li><a href="#" class="nav-link" data-view="contact">Contacto</a></li>
       </ul>
     </nav>
 
+    <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
     <main>
+      <!-- VISTA: INICIO -->
       <section id="view-home" class="view active">
-        <h2>Inicio</h2>
-        <p>Bienvenido a la cafeteria</p>
+        <div class="hero">
+          <div class="hero__text">
+            <span class="hero__tag">☕ Bienvenido</span>
+            <h1 class="hero__title">El mejor café,<br />en cada sorbo</h1>
+            <p class="hero__subtitle">
+              Descubre nuestra selección de cafés de especialidad, postres
+              artesanales y bebidas naturales. Hecho con amor, servido con
+              pasión.
+            </p>
+            <a href="#" class="btn btn--primary hero__cta" data-view="menu">
+              Ver Menú
+            </a>
+          </div>
+          <div class="hero__image">
+            <img src="img/imagen1.png" alt="Aroma Café" />
+          </div>
+        </div>
+
+        <!-- Tarjetas de características -->
+        <div class="features">
+          <div class="feature-card">
+            <span class="feature-card__icon">🌿</span>
+            <h3>Ingredientes naturales</h3>
+            <p>Seleccionamos los mejores granos y productos frescos.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-card__icon">⚡</span>
+            <h3>Pedido rápido</h3>
+            <p>Agrega al carrito y finaliza tu pedido en segundos.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-card__icon">❤️</span>
+            <h3>Hecho con amor</h3>
+            <p>Cada producto preparado con dedicación y cariño.</p>
+          </div>
+        </div>
       </section>
 
+      <!-- VISTA: MENÚ -->
       <section id="view-menu" class="view">
-        <h2>Menu</h2>
-        <p>Nuestros productos disponibles</p>
+        <div class="section-header">
+          <h2>Nuestro Menú</h2>
+          <p>Elige tus productos favoritos y agrégalos al carrito</p>
+        </div>
+        <!-- El JS renderiza las cards aquí -->
         <div id="products-container" class="products-container"></div>
       </section>
 
-      <!-- CARRITO -->
+      <!-- VISTA: CARRITO -->
       <section id="view-cart" class="view">
-        <h2>Carrito</h2>
-        <p>Productos agregados</p>
+        <div class="section-header">
+          <h2>Tu Carrito</h2>
+          <p>Revisa tus productos antes de finalizar el pedido</p>
+        </div>
 
+        <!-- El JS renderiza los items aquí -->
         <div id="cart-container"></div>
       </section>
 
-      <!-- CONTACTO -->
+      <!-- VISTA: CONTACTO -->
       <section id="view-contact" class="view">
-        <h2>Contacto</h2>
-        <p>Información de contacto</p>
+        <div class="section-header">
+          <h2>Contacto</h2>
+          <p>Estamos para ayudarte</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <span class="contact-card__icon">📍</span>
+            <h3>Dirección</h3>
+            <p>Av. Principal 123, Ciudad</p>
+          </div>
+          <div class="contact-card">
+            <span class="contact-card__icon">📞</span>
+            <h3>Teléfono</h3>
+            <p>+591 7XX XXX XXX</p>
+          </div>
+          <div class="contact-card">
+            <span class="contact-card__icon">🕐</span>
+            <h3>Horario</h3>
+            <p>Lun – Sáb: 8:00 – 20:00</p>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>Derechos reservados 2026. Desarrollado por Sergio Alcocer</p>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <p>
+        © 2026 Aroma Café — Desarrollado por <strong>Sergio Alcocer</strong>
+      </p>
     </footer>
+
     <script src="js/app.js"></script>
+
+    <!-- Script mínimo para el menú hamburguesa (no toca la lógica del carrito) -->
+    <script>
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      navToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("nav-links--open");
+        navToggle.classList.toggle("nav-toggle--open");
+      });
+
+      // Cierra el menú al hacer clic en un enlace (móvil)
+      document.querySelectorAll(".nav-link").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navLinks.classList.remove("nav-links--open");
+          navToggle.classList.remove("nav-toggle--open");
+        });
+      });
+
+      // El botón CTA del hero también navega al menú
+      document
+        .querySelector(".hero__cta")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document
+            .querySelectorAll(".view")
+            .forEach((v) => v.classList.remove("active"));
+          document.getElementById("view-menu").classList.add("active");
+        });
+    </script>
   </body>
 </html>
-
-<table></table>
