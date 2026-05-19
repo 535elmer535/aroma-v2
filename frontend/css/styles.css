@@ -78,6 +78,10 @@
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -153,6 +157,8 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  overflow: visible;
 }
 
 /* Logo + nombre de marca */
@@ -1064,9 +1070,9 @@ main {
   }
 
   /* Navbar necesita position relative para el menú absoluto */
-  .navbar {
+  /* .navbar {
     position: relative;
-  }
+  } */
 
   /* Clase que activa el menú */
   .nav-links--open {
@@ -1146,7 +1152,7 @@ main {
 /* ---- Pantallas muy pequeñas (< 480px) ---- */
 @media (max-width: 480px) {
   .products-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .hero__title {
     font-size: 1.6rem;
@@ -1183,9 +1189,10 @@ main {
   margin-bottom: 6px;
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--color-primary-dk);
+  color: var(--color-primary-dark);
 }
 
+/* Estilos base */
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -1194,16 +1201,35 @@ main {
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
   color: var(--color-text);
-  background: var(--color-primary-light);
+  background: var(--color-surface);
 }
 
+/* Estado focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(111, 78, 55, 0.12);
+}
+
+/* CONTROL DEL TEXTAREA */
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Mensajes de error */
 .error-msg {
   display: block;
-  color: #4b2e1f;
+  /* color: #4b2e1f; */
+  color: var(--color-danger);
   margin-top: 4px;
+  font-size: 0.8rem;
 }
 
-.seccess-msg {
+/* Mensaje de éxito */
+.success-msg {
   margin-top: 16px;
-  color: var(--colors);
+  color: var(--color-success);
+  font-weight: 500;
 }

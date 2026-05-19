@@ -12,7 +12,9 @@ enlaces.forEach(function (enlace) {
   enlace.addEventListener("click", function (evento) {
     evento.preventDefault();
 
-    const vista = enlace.dataset.view;
+    // const vista = enlace.dataset.view;
+    //  const vista = this.dataset.view;
+    const vista = evento.currentTarget.dataset.view;
 
     // Oculta todas las vistas
     document.querySelectorAll(".view").forEach(function (seccion) {
@@ -181,12 +183,21 @@ function renderizarProductos() {
 // ==========================
 function actualizarContador() {
   const contador = document.getElementById("cart-count");
-  contador.textContent = carrito.length;
+
+  const totalCantidad = carrito.reduce(function (acc, p) {
+    return acc + p.cantidad;
+  }, 0);
+
+  contador.textContent = totalCantidad;
 
   // Reinicia la animación de pulso
   contador.classList.remove("bump");
-  void contador.offsetWidth; // fuerza reflow para reiniciar la animación
-  contador.classList.add("bump");
+  // fuerza reflow para reiniciar la animación
+  // se puede usar cualquiera
+  // void contador.offsetWidth;
+  requestAnimationFrame(() => {
+    contador.classList.add("bump");
+  });
 }
 
 // ==========================
@@ -310,7 +321,7 @@ function renderizarCarrito() {
       const id = parseInt(this.dataset.id);
       const item = carrito.find((p) => p.id === id);
       item.cantidad += 1;
-      cargarcarrito();
+      guardarcarrito();
       actualizarContador();
       renderizarCarrito();
     });
@@ -361,6 +372,7 @@ function inicializarformulariocontacto() {
     exito.textContent = "";
 
     let valido = true;
+
     if (nombre.value.trim() === "") {
       errornombre.textContent = "el nombre es obligatorio";
       valido = false;
@@ -376,6 +388,8 @@ function inicializarformulariocontacto() {
       valido = false;
     }
 
+    if (!valido) return;
+
     exito.textContent = "mensaje enviado";
   });
 }
@@ -387,3 +401,5 @@ cargarcarrito();
 renderizarProductos();
 renderizarCarrito();
 actualizarContador();
+
+inicializarformulariocontacto();
